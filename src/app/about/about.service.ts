@@ -11,6 +11,6 @@ export class AboutService {
   constructor(private httpClient: HttpClient) { }
 
   findAllAboutStructure(){
-    return this.httpClient.get(`${this.url}/about-structure`)
+    return this.httpClient.get(`${this.url}/about-structure/page`)
   }
 }
