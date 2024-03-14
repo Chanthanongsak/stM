@@ -56,7 +56,7 @@ export class ServiceThaiComponent implements OnInit {
       .findBySectionAndCountry(this.service_country_id, section_id)
       .subscribe((res: any) => {
         this.dataLaoByProvCountry = res.data;
-        // console.log(this.dataLaoByProvCountry)
+        console.log(this.dataLaoByProvCountry)
       });
 
     this.service
