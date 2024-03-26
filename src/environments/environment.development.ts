@@ -6,4 +6,8 @@ export const environment = {
   public_dev: '',
   phetsarathUrl: '',
   baseUrl: '',
+  recaptcha: {
+    siteKey: '6LdvvqQpAAAAAEyjUc390fpO6n18bUFqG7qLTwim',
+    secretKey:'6LdvvqQpAAAAAI8--Xs1B5UnZdIITOSCKE0ZEZMR',
+  },
 };

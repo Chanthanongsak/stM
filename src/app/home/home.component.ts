@@ -95,7 +95,7 @@ export class HomeComponent implements OnInit {
     pullDrag: false,
     dots: true,
     navSpeed: 600,
-    // items:4,
+    // items:2,
     navText: ['&#8249', '&#8250;'],
     responsive: {
       0: {

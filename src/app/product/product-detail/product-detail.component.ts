@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductService } from '../product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,7 +16,11 @@ export class ProductDetailComponent implements OnInit {
   listMenuName: any;
   categoryName: any;
 
-  constructor(private route: ActivatedRoute, private service: ProductService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private service: ProductService,
+    private scroller: ViewportScroller
+  ) {}
 
   form = new FormGroup({
     full_name: new FormControl('', [Validators.required]),
@@ -38,27 +43,31 @@ export class ProductDetailComponent implements OnInit {
 
   submit() {
     if (this.form.invalid) {
-      alert('ປ້ອນຂໍ້ມູນໃຫ້ຄົບ')
-      return
+      alert('ປ້ອນຂໍ້ມູນໃຫ້ຄົບ');
+      return;
     }
 
-    this.service.createProductOrder({
-      full_name: this.form.value.full_name,
-      email: this.form.value.email,
-      phone: this.form.value.phone,
-      p_id: this.p_id,
-    }).subscribe((res:any) => {
-      if(res.status == 200){
-        alert("Successfully...?")
-        this.clearForm();
-      }else
-      {
-        alert("Error...?")
-      }
-
-    });
+    this.service
+      .createProductOrder({
+        full_name: this.form.value.full_name,
+        email: this.form.value.email,
+        phone: this.form.value.phone,
+        p_id: this.p_id,
+      })
+      .subscribe((res: any) => {
+        if (res.status == 200) {
+          alert('Successfully...?');
+          this.clearForm();
+        } else {
+          alert('Error...?');
+        }
+      });
   }
-  clearForm(){
-    this.form.reset()
+  clearForm() {
+    this.form.reset();
+  }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
   }
 }

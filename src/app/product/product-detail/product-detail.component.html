@@ -28,8 +28,11 @@
       </div>
       <h2>{{dataProductDetail.p_name_la + " " +dataProductDetail.p_name_en}}</h2>
       <div class="content">
-        <div class="content-product-detail">
+        <button (click)="scroll(info)" class="content-icon-call-center">
+          <img class="content-icon-call-center-image" src="assets/images/product/call-center.png" alt="icon">
+        </button>
 
+        <div class="content-product-detail">
           <div class="product-section" *ngFor="let item of dataProductDetail.Sections">
             <div class="product-preview" *ngIf="item.p_section_image">
               <img class="product-preview-image" [src]="item.p_section_image" alt="">
@@ -48,7 +51,7 @@
             <div class="product-outline" *ngIf="item.p_section_outline"></div>
           </div>
 
-          <div class="product-section-form">
+          <div #info id="info" class="product-section-form">
             <div class="product-section-form-header">
               <p class="product-section-form-title">
                 ສອບຖາມເບ້ຍປະກັນ

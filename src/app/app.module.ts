@@ -31,6 +31,8 @@ import { ProductComponent } from './product/product.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { MessengerComponent } from './components/messenger/messenger.component';
 
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
+
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { MessengerComponent } from './components/messenger/messenger.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RecaptchaModule,  
+    RecaptchaFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

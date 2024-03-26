@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ContactService } from './contact.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -8,7 +9,7 @@ import { ContactService } from './contact.service';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent {
-
+  sitekey = environment.recaptcha.siteKey
 
   form = new FormGroup({
     fullName: new FormControl('',[Validators.required]),
@@ -46,5 +47,12 @@ export class ContactComponent {
     this.form.reset()
   }
 
+
+  resolved(captchaResponse: any) {
+    console.log(`Resolved response token: ${captchaResponse}`);
+    this.service.recaptcha(captchaResponse).subscribe((res:any) => {
+      console.log(res)
+    })
+  }
 
 }

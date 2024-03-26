@@ -12,7 +12,7 @@ export class HomeService {
   constructor(private httpClient: HttpClient) { }
 
   findAllBanner(){
-    return this.httpClient.get(`${this.url}/banner`)
+    return this.httpClient.get(`${this.url}/banner/page`)
   }
-  
+
 }
