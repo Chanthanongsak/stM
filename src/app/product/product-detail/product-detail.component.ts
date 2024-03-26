@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductService } from '../product.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ViewportScroller } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,6 +11,9 @@ import { ViewportScroller } from '@angular/common';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
+  sitekey = environment.recaptcha.siteKey
+  showButton = true
+
   p_id: any;
   dataProductDetail: any;
   loading = false;
@@ -69,5 +73,15 @@ export class ProductDetailComponent implements OnInit {
 
   scroll(el: HTMLElement) {
     el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+  }
+
+  resolved(captchaResponse: any) {
+    this.showButton = true;
+    this.service.recaptcha(captchaResponse).subscribe((res:any) => {
+      console.log(res)
+      if(res.success){
+        this.showButton = false;
+      }
+    })
   }
 }

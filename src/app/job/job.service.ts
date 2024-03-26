@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class JobService {
   private url = environment.apiUrl;
+  private secretKey = environment.recaptcha.secretKey
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,5 +17,9 @@ export class JobService {
 
   createApplyWork(data:any){
     return this.httpClient.post(`${this.url}/apply-work`,data)
+  }
+
+  recaptcha(data:any){
+    return this.httpClient.post(`${this.url}/reCaptcha`,{recaptcha:data,secretKey:this.secretKey})
   }
 }

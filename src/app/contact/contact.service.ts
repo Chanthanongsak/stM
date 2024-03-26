@@ -15,9 +15,8 @@ export class ContactService {
     return this.httpClient.post(`${this.url}/send-mail`,data)
   }
 
-  //https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${token}
   recaptcha(data:any){
-    return this.httpClient.get(`https://www.google.com/recaptcha/api/siteverify?secret=${this.secretKey}&response=${data}`)
+    return this.httpClient.post(`${this.url}/reCaptcha`,{recaptcha:data,secretKey:this.secretKey})
   }
 
 }

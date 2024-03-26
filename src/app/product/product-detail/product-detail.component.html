@@ -71,8 +71,12 @@
                   <input type="text" class="form-control" formControlName="phone" placeholder="ເບີ​ໂທລະ​ສັບ">
                 </div>
               </div>
+              <div *ngIf="showButton" style="display: flex; align-items: center; justify-content: center;">
+                <re-captcha (resolved)="resolved($event)" siteKey={{sitekey}}>
+                </re-captcha>
+              </div>
               <div class="form-btn">
-                <button type="submit" class="btn btn-submit">ຕົກລົງ</button>
+                <button type="submit" class="btn btn-submit" [disabled]="showButton">ຕົກລົງ</button>
                 <button type="button" (click)="clearForm()" class="btn btn-cancel">ຍົກເລີກ</button>
               </div>
             </form>

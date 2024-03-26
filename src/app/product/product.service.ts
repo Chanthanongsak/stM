@@ -7,7 +7,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductService {
   private url = environment.apiUrl
-
+  private secretKey = environment.recaptcha.secretKey
+  
   constructor(private httpClient : HttpClient) { }
 
   findProductBySubCategoryId(sub_id:number | null){
@@ -20,5 +21,9 @@ export class ProductService {
 
   createProductOrder(data:any){
     return this.httpClient.post(`${this.url}/product-order/`,data)
+  }
+
+  recaptcha(data:any){
+    return this.httpClient.post(`${this.url}/reCaptcha`,{recaptcha:data,secretKey:this.secretKey})
   }
 }

@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ContactComponent {
   sitekey = environment.recaptcha.siteKey
+  showButton = true
 
   form = new FormGroup({
     fullName: new FormControl('',[Validators.required]),
@@ -49,9 +50,12 @@ export class ContactComponent {
 
 
   resolved(captchaResponse: any) {
-    console.log(`Resolved response token: ${captchaResponse}`);
+    this.showButton = true;
     this.service.recaptcha(captchaResponse).subscribe((res:any) => {
       console.log(res)
+      if(res.success){
+        this.showButton = false;
+      }
     })
   }
 

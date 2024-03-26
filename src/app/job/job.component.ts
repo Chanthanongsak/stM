@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobService } from './job.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-job',
@@ -8,6 +9,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./job.component.scss'],
 })
 export class JobComponent implements OnInit {
+  sitekey = environment.recaptcha.siteKey
+  showButton = true
   dataJob: any;
   fileChoose: any;
   fileName: any;
@@ -87,5 +90,15 @@ export class JobComponent implements OnInit {
     if (staffImg != null) {
       staffImg.classList.remove('disBlock');
     }
+  }
+
+  resolved(captchaResponse: any) {
+    this.showButton = true;
+    this.service.recaptcha(captchaResponse).subscribe((res:any) => {
+      console.log(res)
+      if(res.success){
+        this.showButton = false;
+      }
+    })
   }
 }
